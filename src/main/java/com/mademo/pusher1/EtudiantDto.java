@@ -1,5 +1,6 @@
 package com.mademo.pusher1;
 
+import com.mademo.pusher1.model.Etudiant;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,6 +1,5 @@
 package com.mademo.pusher1.controller;
 
-import com.mademo.pusher1.Etudiant;
 import com.mademo.pusher1.EtudiantDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

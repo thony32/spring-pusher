@@ -1,4 +1,4 @@
-package com.mademo.pusher1;
+package com.mademo.pusher1.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
