@@ -19,5 +19,4 @@ public interface EtudiantApi {
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<List<EtudiantDto>> findAll(@RequestBody Map<String, Object> message);
-
 }

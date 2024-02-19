@@ -53,6 +53,13 @@
             <artifactId>pusher-http-java</artifactId>
             <version>1.3.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
