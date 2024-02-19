@@ -15,23 +15,54 @@ import java.util.Map;
 @RestController
 public class EtudiantController implements EtudiantApi {
     private EtudiantService etudiantService;
-    private Pusher pusher;
+    //private Pusher pusher;
 
     @Autowired
-    public EtudiantController(EtudiantService etudiantService, Pusher pusher) {
+    public EtudiantController(EtudiantService etudiantService) {
         this.etudiantService = etudiantService;
-        this.pusher = pusher;
     }
 
+
+    /*
+            @Autowired
+            public EtudiantController(EtudiantService etudiantService, Pusher pusher) {
+                this.etudiantService = etudiantService;
+                this.pusher = pusher;
+            }
+
+             */
+
+
+
+    /*
     @Override
     public ResponseEntity<EtudiantDto> save(EtudiantDto etudiant, Map<String, Object> message) {
         pusher.trigger("test-pusher","my-event",message);
         return ResponseEntity.ok(etudiantService.save(etudiant));
     }
 
+     */
+
+    @Override
+    public ResponseEntity<List<EtudiantDto>> findAll() {
+        return ResponseEntity.ok(etudiantService.findAll());
+
+    }
+
+
+
+    /*
     @Override
     public ResponseEntity<List<EtudiantDto>> findAll(Map<String, Object> message) {
         pusher.trigger("","",message);
         return ResponseEntity.ok(etudiantService.findAll());
+    }
+
+     */
+
+
+    @Override
+    public ResponseEntity<List<EtudiantDto>> findQuerry(String querry) {
+        return ResponseEntity.ok(etudiantService.findQuerry(querry));
     }
 }

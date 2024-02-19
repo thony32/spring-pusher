@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +23,7 @@ public class EtudiantServiceImpl implements EtudiantService{
         this.etudiantDao = etudiantDao;
     }
 
+    /*
     @Override
     public EtudiantDto save(EtudiantDto etudiantDto) {
         return EtudiantDto.fromEntity
@@ -30,10 +33,23 @@ public class EtudiantServiceImpl implements EtudiantService{
                 );
     }
 
+     */
+
     @Override
     public List<EtudiantDto> findAll() {
         return etudiantDao.findAll().stream()
                 .map(EtudiantDto::fromEntity)
                 .collect(Collectors.toList());
     }
+
+
+
+    @Override
+    public List<EtudiantDto> findQuerry(String querry) {
+        log.info(querry);
+        return etudiantDao.findQuerry(querry);
+    }
+
+
+
 }
