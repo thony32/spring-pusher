@@ -1,6 +1,5 @@
 package com.mademo.pusher1.controller;
 
-import com.mademo.pusher1.Etudiant;
 import com.mademo.pusher1.EtudiantDto;
 import com.mademo.pusher1.service.EtudiantService;
 import com.pusher.rest.Pusher;
