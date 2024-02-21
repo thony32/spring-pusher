@@ -2,6 +2,8 @@ package com.mademo.pusher1.controller;
 
 import com.mademo.pusher1.EtudiantDto;
 import com.mademo.pusher1.service.MappingService;
+import com.pusher.rest.Pusher;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,8 +14,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 public class MappingController {
     private final MappingService service;
@@ -24,18 +25,17 @@ public class MappingController {
     }
 
     @PostMapping("/custom-query")
-    public List<EtudiantDto> getResultQuery(@RequestParam String query){
+    public List<EtudiantDto> getResultQuery(@RequestParam String query) {
         return service.doQuery(query);
     }
 
     @PostMapping("/custom-query-other")
-    public String executeNonSelectQuery(@RequestParam String query){
+    public String executeNonSelectQuery(@RequestParam String query) {
         return service.otherQuery(query);
     }
 
-
     @PostMapping("/custom-query-combined")
-    public Object executeCombinedQuery(@RequestParam String query){
+    public Object executeCombinedQuery(@RequestParam String query) {
         if (!query.contains(";")) {
             return "Attention : n'oubliez pas de mettre la virgule dans la requête.";
         }
@@ -43,13 +43,17 @@ public class MappingController {
             query = query.substring(0, query.length() - 1);
         }
 
+        Pusher pusher = new Pusher("1758867", "67bf07e6e0cc1ee95176", "d00d10fc598efe372785");
+        pusher.setCluster("ap2");
+
+        pusher.trigger("test-pusher", "my-event", ("FYI"));
+
         if (isDoQueryRequest(query)) {
             return service.doQuery(query);
         } else {
             return service.otherQuery(query);
         }
     }
-
 
     private boolean isDoQueryRequest(String query) {
         Pattern pattern = Pattern.compile("\\b(SELECT)\\b", Pattern.CASE_INSENSITIVE);
