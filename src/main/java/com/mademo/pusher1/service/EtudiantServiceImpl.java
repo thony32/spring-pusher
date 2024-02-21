@@ -23,7 +23,14 @@ public class EtudiantServiceImpl implements EtudiantService{
         this.etudiantDao = etudiantDao;
     }
 
-    /*
+    @Override
+    public List<EtudiantDto> findQuery(String query) {
+        List<EtudiantDto> listeLineLabelAbrev = etudiantDao.findQuery(query).stream()
+                .map(EtudiantDto::fromEntity)
+                .collect(Collectors.toList());
+        return listeLineLabelAbrev;
+    }
+
     @Override
     public EtudiantDto save(EtudiantDto etudiantDto) {
         return EtudiantDto.fromEntity
@@ -33,7 +40,6 @@ public class EtudiantServiceImpl implements EtudiantService{
                 );
     }
 
-     */
 
     @Override
     public List<EtudiantDto> findAll() {
@@ -43,12 +49,15 @@ public class EtudiantServiceImpl implements EtudiantService{
     }
 
 
-
+/*
     @Override
     public List<EtudiantDto> findQuerry(String querry) {
         log.info(querry);
+        System.out.println(etudiantDao.findQuerry(querry));
         return etudiantDao.findQuerry(querry);
     }
+
+ */
 
 
 

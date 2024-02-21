@@ -4,6 +4,7 @@ import com.mademo.pusher1.EtudiantDto;
 import com.mademo.pusher1.service.EtudiantService;
 import com.pusher.rest.Pusher;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,20 +35,19 @@ public class EtudiantController implements EtudiantApi {
 
 
 
-    /*
     @Override
-    public ResponseEntity<EtudiantDto> save(EtudiantDto etudiant, Map<String, Object> message) {
-        pusher.trigger("test-pusher","my-event",message);
+    public ResponseEntity<EtudiantDto> save(EtudiantDto etudiant) {
+        //pusher.trigger("test-pusher","my-event",message);
         return ResponseEntity.ok(etudiantService.save(etudiant));
     }
 
-     */
 
     @Override
     public ResponseEntity<List<EtudiantDto>> findAll() {
         return ResponseEntity.ok(etudiantService.findAll());
 
     }
+
 
 
 
@@ -60,9 +60,14 @@ public class EtudiantController implements EtudiantApi {
 
      */
 
-
     @Override
-    public ResponseEntity<List<EtudiantDto>> findQuerry(String querry) {
-        return ResponseEntity.ok(etudiantService.findQuerry(querry));
+    public ResponseEntity<List<EtudiantDto>> getQuery(String query) {
+        List<EtudiantDto> groupedEtudiants = etudiantService.findQuery(query);
+
+        if (!groupedEtudiants.isEmpty()) {
+            return new ResponseEntity<>(groupedEtudiants, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

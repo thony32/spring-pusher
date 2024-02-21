@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public interface EtudiantService {
-    /*
-    EtudiantDto save(EtudiantDto etudiantDto);
 
-     */
+    EtudiantDto save(EtudiantDto etudiantDto);
 
     List<EtudiantDto> findAll();
 
 
 
-    List<EtudiantDto> findQuerry(String querry);
+    //List<EtudiantDto> findQuerry(String querry);
+
+    List<EtudiantDto> findQuery(String query);
 
 }
