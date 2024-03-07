@@ -1,18 +1,15 @@
 package com.mademo.pusher1.service;
 
 import com.mademo.pusher1.EtudiantDto;
-import com.mademo.pusher1.model.Etudiant;
 import com.pusher.rest.Pusher;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-import org.hibernate.exception.SQLGrammarException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.UnexpectedRollbackException;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 
 @Service
@@ -41,6 +38,24 @@ public class MappingService {
                     pusher.trigger("test-pusher", "my-event", ("delete"));
                     break;
 
+                case "INSERT":
+                    Pusher pusher1 = new Pusher("1758867", "67bf07e6e0cc1ee95176", "d00d10fc598efe372785");
+                    pusher1.setCluster("ap2");
+                    pusher1.trigger("test-pusher", "my-event", ("insert"));
+                    break;
+
+                case "UPDATE":
+                    Pusher pusher2 = new Pusher("1758867", "67bf07e6e0cc1ee95176", "d00d10fc598efe372785");
+                    pusher2.setCluster("ap2");
+                    pusher2.trigger("test-pusher", "my-event", ("update"));
+                    break;
+
+                case "SELECT":
+                    Pusher pusher3 = new Pusher("1758867", "67bf07e6e0cc1ee95176", "d00d10fc598efe372785");
+                    pusher3.setCluster("ap2");
+                    pusher3.trigger("test-pusher", "my-event", ("select"));
+                    break;
+
                 default:
                     break;
             }
@@ -60,18 +75,5 @@ public class MappingService {
             return "Echec de la tentative : " + e.getMessage();
         }
     }
-
-    /*
-     * public <T> T executeQuery(String queryString) {
-     * if (queryString.trim().toLowerCase().startsWith("select")) {
-     * // Appel de la fonction doQuery pour les requêtes JPQL
-     * return (T) doQuery(queryString);
-     * } else {
-     * // Appel de la fonction otherQuery pour les requêtes SQL natives
-     * return (T) otherQuery(queryString);
-     * }
-     * }
-     * 
-     */
 
 }

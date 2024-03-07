@@ -11,31 +11,20 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
+
 
 @CrossOrigin(origins = "*")
 @RestController
 public class EtudiantController implements EtudiantApi {
     private EtudiantService etudiantService;
-    // private Pusher pusher;
 
     @Autowired
     public EtudiantController(EtudiantService etudiantService) {
         this.etudiantService = etudiantService;
     }
 
-    /*
-     * @Autowired
-     * public EtudiantController(EtudiantService etudiantService, Pusher pusher) {
-     * this.etudiantService = etudiantService;
-     * this.pusher = pusher;
-     * }
-     * 
-     */
-
     @Override
     public ResponseEntity<EtudiantDto> save(EtudiantDto etudiant) {
-        // pusher.trigger("test-pusher","my-event",message);
         return ResponseEntity.ok(etudiantService.save(etudiant));
     }
 
@@ -49,16 +38,6 @@ public class EtudiantController implements EtudiantApi {
         return ResponseEntity.ok(etudiantService.findAll());
 
     }
-
-    /*
-     * @Override
-     * public ResponseEntity<List<EtudiantDto>> findAll(Map<String, Object> message)
-     * {
-     * pusher.trigger("","",message);
-     * return ResponseEntity.ok(etudiantService.findAll());
-     * }
-     * 
-     */
 
     @Override
     public ResponseEntity<List<EtudiantDto>> getQuery(String query) {

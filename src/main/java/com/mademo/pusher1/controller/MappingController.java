@@ -1,6 +1,5 @@
 package com.mademo.pusher1.controller;
 
-import com.mademo.pusher1.EtudiantDto;
 import com.mademo.pusher1.service.MappingService;
 import com.pusher.rest.Pusher;
 
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,16 +20,6 @@ public class MappingController {
     @Autowired
     public MappingController(MappingService service) {
         this.service = service;
-    }
-
-    @PostMapping("/custom-query")
-    public List<EtudiantDto> getResultQuery(@RequestParam String query) {
-        return service.doQuery(query);
-    }
-
-    @PostMapping("/custom-query-other")
-    public String executeNonSelectQuery(@RequestParam String query) {
-        return service.otherQuery(query);
     }
 
     @PostMapping("/custom-query-combined")
