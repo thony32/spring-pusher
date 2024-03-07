@@ -49,13 +49,6 @@ public class MappingService {
                     pusher2.setCluster("ap2");
                     pusher2.trigger("test-pusher", "my-event", ("update"));
                     break;
-
-                case "SELECT":
-                    Pusher pusher3 = new Pusher("1758867", "67bf07e6e0cc1ee95176", "d00d10fc598efe372785");
-                    pusher3.setCluster("ap2");
-                    pusher3.trigger("test-pusher", "my-event", ("select"));
-                    break;
-
                 default:
                     break;
             }
