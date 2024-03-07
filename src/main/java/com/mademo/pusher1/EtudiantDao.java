@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface EtudiantDao extends JpaRepository<Etudiant, Integer> {
 
+    // Requête native
     @Query(value = ":query", nativeQuery = true)
     List<Etudiant> findQuery(@Param("query") String query);
 
